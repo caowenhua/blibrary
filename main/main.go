@@ -4,12 +4,12 @@ package main
 import (
 	"fmt"
 
-	"../ui"
+	"../controller"
 )
 
 func main() {
 	choice := 0
-	ui.Menu(&choice)
+	controller.Menu(&choice)
 	fmt.Println(choice)
-	ui.Function(choice)
+	controller.Function(choice)
 }
