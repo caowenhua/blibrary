@@ -1,6 +1,10 @@
 package controller
 
-import "fmt"
+import (
+	"fmt"
+
+	"../bean"
+)
 
 func Menu(choice *int) int {
 	fmt.Println("请选择功能：")
@@ -14,6 +18,7 @@ func Menu(choice *int) int {
 
 	fmt.Scanf("%d", &(*choice))
 	//	fmt.Println(choice)
+
 	return *choice
 }
 
@@ -40,6 +45,7 @@ func Function(choice int) {
 	case 7:
 		fmt.Println("function7.删除书籍(按ISDN)")
 		deleteBookById()
+	case 0:
 	default:
 		fmt.Println("您好，请输入上述选项数字，谢谢！")
 	}
@@ -59,6 +65,11 @@ func newBook() {
 	fmt.Scan(&price)
 	fmt.Println("请输入出版时间")
 	fmt.Scan(&time)
+	book := bean.CreateBook(price, name, isbn, author, time)
+	fmt.Println("=============================")
+	fmt.Println(book)
+	fmt.Println("=============================")
+	fmt.Println("新建书籍成功")
 }
 
 func findBookById() {
