@@ -9,16 +9,18 @@ import (
 )
 
 func main() {
-	data, error := db.InitData()
+	error := db.InitData()
 	if error != nil {
 		fmt.Println("error!!!", error)
 		return
 	}
-	fmt.Println(data)
 	for true {
-		choice := 0
+		choice := -1
 		controller.Menu(&choice)
 		fmt.Println("choice:", choice)
+		if choice == 0 {
+			return
+		}
 		controller.Function(choice)
 	}
 

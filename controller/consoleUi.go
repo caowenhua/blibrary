@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"../bean"
+	"../db"
 )
 
 func Menu(choice *int) int {
@@ -15,6 +16,7 @@ func Menu(choice *int) int {
 	fmt.Println("5.查询书籍(按日期)")
 	fmt.Println("6.查询书籍(按作者)")
 	fmt.Println("7.删除书籍(按ISDN)")
+	fmt.Println("0.退出")
 
 	fmt.Scanf("%d", &(*choice))
 	//	fmt.Println(choice)
@@ -45,7 +47,7 @@ func Function(choice int) {
 	case 7:
 		fmt.Println("function7.删除书籍(按ISDN)")
 		deleteBookById()
-	case 0:
+	case -1:
 	default:
 		fmt.Println("您好，请输入上述选项数字，谢谢！")
 	}
@@ -69,6 +71,7 @@ func newBook() {
 	fmt.Println("=============================")
 	fmt.Println(book)
 	fmt.Println("=============================")
+	db.AddBook(book)
 	fmt.Println("新建书籍成功")
 }
 
@@ -76,27 +79,32 @@ func findBookById() {
 	var isbn string
 	fmt.Println("请输入书籍ISBN号")
 	fmt.Scan(&isbn)
+	bean.ToArrayString(db.FindBookById(isbn))
 }
 
 func findBookByName() {
 	var name string
 	fmt.Println("请输入书籍名称")
 	fmt.Scan(&name)
+	bean.ToArrayString(db.FindBookByName(name))
 }
 func findBookByAuthor() {
 	var author string
 	fmt.Println("请输入书籍作者")
 	fmt.Scan(&author)
+	bean.ToArrayString(db.FindBookByAuthor(author))
 }
 func findBookByPrice() {
 	var price float64
 	fmt.Println("请输入书籍价格")
 	fmt.Scan(&price)
+	bean.ToArrayString(db.FindBookByPrice(price))
 }
 func findBookByTime() {
 	var time int64
 	fmt.Println("请输入书籍出版时间")
 	fmt.Scan(&time)
+	bean.ToArrayString(db.FindBookByTime(time))
 }
 func deleteBookById() {
 	var isbn string
